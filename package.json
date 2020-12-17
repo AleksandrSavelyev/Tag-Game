@@ -1,11 +1,13 @@
 {
-  "name": "Tag-Game",
+  "name": "game",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=development",
-    "start": "webpack-dev-server --mode=development"
+    "start": "webpack-dev-server --mode=development",
+    "lint": "eslint ./src",
+    "lint-fix": "eslint ./src --fix"
   },
   "repository": {
     "type": "git",
