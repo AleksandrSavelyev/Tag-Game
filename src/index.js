@@ -5,8 +5,8 @@ import Model from "./model/Model";
 
 function start () {
     const view = new View();
-    const model = new Model();
-    const controller = new Controller(view, model);
+    //const model = new Model();
+    const controller = new Controller(view);
 }
 
 start();
