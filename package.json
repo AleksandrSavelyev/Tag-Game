@@ -1,23 +1,22 @@
 {
-  "name": "canvasadors",
+  "name": "Tag-Game",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=development",
-    "start": "webpack-dev-server --mode=development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --mode=development"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/behramshah/canvasadors.git"
+    "url": "git+https://github.com/AleksandrSavelyev/Tag-Game.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/behramshah/canvasadors/issues"
+    "url": "https://github.com/AleksandrSavelyev/Tag-Game.git/issues"
   },
-  "homepage": "https://github.com/behramshah/canvasadors#readme",
+  "homepage": "https://github.com/AleksandrSavelyev/Tag-Game.git#readme",
   "dependencies": {
     "@babel/core": "7.7.4",
     "@babel/plugin-proposal-class-properties": "7.7.4",
@@ -39,7 +38,14 @@
   },
   "devDependencies": {
     "eslint": "^7.15.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.0.0",
     "eslint-config-rallycoding": "^3.2.0",
-    "eslint-plugin-react": "^7.21.5"
+    "eslint-plugin-html": "^6.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-react": "^7.21.5",
+    "prettier": "^2.2.1"
   }
 }
