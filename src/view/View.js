@@ -37,6 +37,10 @@ class View {
         return div;
     }
 
+    startTimer = () => {
+        if(this.timer.path)
+    }
+
     createTimer = props => {
         const hour = document.createElement('span')
         const minute = document.createElement('span');
