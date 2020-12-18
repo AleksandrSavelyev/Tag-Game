@@ -13,6 +13,7 @@ class Controller {
         this.model.init();
         this.model.checkoutDb(this.printDb.bind(this));
         this.view.clickGameBoardElement(this.clickGameElement.bind(this));
+        this.view.timerOn ();
     }
 
     printDb = Element => {

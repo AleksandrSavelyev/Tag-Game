@@ -37,26 +37,57 @@ class View {
         return div;
     }
 
-    startTimer = () => {
-        if(this.timer.path)
+    timerOn = () => {
+        this.startButton.addEventListener('click', this.startTimer);
     }
 
+     startTimer = () => {
+         let milSec = 0;
+         let sec = 0;
+         let min = 0;
+         let hour = 0;
+         setInterval(() => {
+            milSec++;
+            
+            if(milSec == 10) {
+            milSec = 0;
+            sec++;
+            } else if(sec == 60) {
+                sec = 0;
+                min++;
+            } else if(min === 60) {
+                min = 0;
+                hour++;
+            }
+
+            if(milSec <= 9) {
+            milSec = "0" + milSec;
+            }
+            
+            this.millisec.innerText = milSec;
+            this.second.innerText = sec + ':';
+            this.minute.innerText = min + ':';
+            this.hour.innerText = hour + ':';
+        }, 100);
+
+     }
+
     createTimer = props => {
-        const hour = document.createElement('span')
-        const minute = document.createElement('span');
-        const second = document.createElement('span');
-        const millisec = document.createElement('span');
+        this.hour = document.createElement('span')
+        this.minute = document.createElement('span');
+        this.second = document.createElement('span');
+        this.millisec = document.createElement('span');
         const timerDiv = this.createDiv({className: 'main__time-container', id: 'time-container'})
 
-        hour.innerText = '00' + ':';
-        second.innerText = '00' + ':';
-        minute.innerText = '00' + ':';
-        millisec.innerText = '00';
+        this.hour.innerText = '00' + ':';
+        this.second.innerText = '00' + ':';
+        this.minute.innerText = '00' + ':';
+        this.millisec.innerText = '00';
 
-        timerDiv.append(hour);
-        timerDiv.append(minute);
-        timerDiv.append(second);
-        timerDiv.append(millisec);
+        timerDiv.append(this.hour);
+        timerDiv.append(this.minute);
+        timerDiv.append(this.second);
+        timerDiv.append(this.millisec);
                 
         props.id && (timerDiv.id = props.id);
         props.className && (timerDiv.className = props.className);
