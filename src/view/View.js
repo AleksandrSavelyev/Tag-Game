@@ -4,6 +4,7 @@ class View {
         this.timer = null;
         this.gameTable = null;
         this.startButton = null;
+        this.topContainer = null;
         this.mainContainer = null;
         this.movesCalculator = null;
         }
@@ -11,14 +12,16 @@ class View {
     init = () => {
         this.root = document.getElementById('root');
         this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
+        this.topContainer = this.createDiv({className: 'top-container', id: 'top-container'})
         this.timer = this.createTimer({ className: 'main__container-timer', id: 'container-timer' });
         this.startButton = this.createButton({className: 'main__container-start', id: 'container-start'});
         this.movesCalculator = this.createCalculator({className: 'main__container-moves', id: 'container-moves'})
         this.timer.style.borderStyle = 'solid';
         this.movesCalculator.style.borderStyle = 'solid';
 
-        this.mainContainer.append(this.movesCalculator);
-        this.mainContainer.append(this.timer);
+        this.topContainer.append(this.movesCalculator);
+        this.topContainer.append(this.timer);
+        this.mainContainer.append(this.topContainer);
         this.mainContainer.append(this.startButton);
         this.root.append(this.mainContainer);
 
@@ -69,17 +72,19 @@ class View {
     }
 
     createCalculator = props => {
+        const movesDiv = this.createDiv({className: 'moves-container', id: 'moves-container'})
         const moves = document.createElement('span');
 
         moves.innerText = '0';
+        movesDiv.append(moves);
 
         props.id && (moves.id = props.id);
         props.className && (moves.className = props.className);
 
-        return moves;
+        return movesDiv;
     }
 
-    createGameboard = () {
+    createGameboard = () => {
         this.root = document.getElementById('root');
         this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
         this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
