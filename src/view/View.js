@@ -128,10 +128,10 @@ class View {
         tableTr.style.height = '50px';
         tableTr.style.width = '50px';
 
-        const gameTableElement1 = this.createTd({ className: 'table__table-element', id: 'table-elemnt', tdText: props.text[0]});
-        const gameTableElement2 = this.createTd({ className: 'table__table-element', id: 'table-elemnt', tdText: props.text[1]});
-        const gameTableElement3 = this.createTd({ className: 'table__table-element', id: 'table-elemnt', tdText: props.text[2]});
-        const gameTableElement4 = this.createTd({ className: 'table__table-element', id: 'table-elemnt', tdText: props.text[3]});
+        const gameTableElement1 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[0]});
+        const gameTableElement2 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[1]});
+        const gameTableElement3 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[2]});
+        const gameTableElement4 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[3]});
         
         tableTr.append(gameTableElement1);
         tableTr.append(gameTableElement2);
