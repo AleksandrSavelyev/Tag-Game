@@ -117,6 +117,7 @@ class View {
         table.style.border = 'solid';
         table.style.height = '250px';
         table.style.width = '250px';
+        table.style.color = 'green';
 
         return table;
     }
@@ -140,6 +141,7 @@ class View {
         tableTr.style.border = 'solid';
         tableTr.style.height = '50px';
         tableTr.style.width = '50px';
+        tableTr.style.color = 'green';
         const gameTableElement1 = this.createTb({ className: 'table__table-element', id: 'table-elemnt'});
         const gameTableElement2 = this.createTb({ className: 'table__table-element', id: 'table-elemnt'});
         const gameTableElement3 = this.createTb({ className: 'table__table-element', id: 'table-elemnt'});
