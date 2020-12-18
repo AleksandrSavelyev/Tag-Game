@@ -7,7 +7,7 @@ class View {
         this.topContainer = null;
         this.mainContainer = null;
         this.movesCalculator = null;
-        }
+    }
 
     init = () => {
         this.root = document.getElementById('root');
@@ -17,6 +17,7 @@ class View {
         this.startButton = this.createButton({className: 'main__container-start', id: 'container-start'});
         this.movesCalculator = this.createCalculator({className: 'main__container-moves', id: 'container-moves'})
         this.timer.style.borderStyle = 'solid';
+        this.timer.style.width = '100px';
         this.movesCalculator.style.borderStyle = 'solid';
 
         this.topContainer.append(this.movesCalculator);
@@ -25,7 +26,6 @@ class View {
         this.mainContainer.append(this.startButton);
         this.root.append(this.mainContainer);
 
-        this.createGameboard();
     }
 
     createDiv = props => {
@@ -56,6 +56,7 @@ class View {
                 
         props.id && (timerDiv.id = props.id);
         props.className && (timerDiv.className = props.className);
+
 
         return timerDiv;
     }
@@ -88,15 +89,7 @@ class View {
         this.root = document.getElementById('root');
         this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
         this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
-        const gameTableLine1 = this.createTr({ className: 'table__table-line', id: 'table-line' });
-        const gameTableLine2 = this.createTr({ className: 'table__table-line', id: 'table-line' });
-        const gameTableLine3 = this.createTr({ className: 'table__table-line', id: 'table-line' });
-        const gameTableLine4 = this.createTr({ className: 'table__table-line', id: 'table-line' });
-        
-        this.gameTable.append(gameTableLine1);
-        this.gameTable.append(gameTableLine2);
-        this.gameTable.append(gameTableLine3);
-        this.gameTable.append(gameTableLine4);
+
         this.mainContainer.append(this.gameTable);
         this.root.append(this.mainContainer);
     }
@@ -121,10 +114,11 @@ class View {
         return table;
     }
 
-    createTb = props => {
+    createTd = props => {
         const tableTd = document.createElement('td');
         props.className && (tableTd.id = props.className);
         props.id && (tableTd.id = props.id);
+        props.tdText && (tableTd.innerText = props.tdText);
         tableTd.style.border = 'solid';
         tableTd.style.height = '50px';
         tableTd.style.width = '50px';
@@ -140,17 +134,17 @@ class View {
         tableTr.style.border = 'solid';
         tableTr.style.height = '50px';
         tableTr.style.width = '50px';
-        const gameTableElement1 = this.createTb({ className: 'table__table-element', id: 'table-elemnt'});
-        const gameTableElement2 = this.createTb({ className: 'table__table-element', id: 'table-elemnt'});
-        const gameTableElement3 = this.createTb({ className: 'table__table-element', id: 'table-elemnt'});
-        const gameTableElement4 = this.createTb({ className: 'table__table-element', id: 'table-elemnt'});
+
+        const gameTableElement1 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[0]});
+        const gameTableElement2 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[1]});
+        const gameTableElement3 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[2]});
+        const gameTableElement4 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[3]});
         
         tableTr.append(gameTableElement1);
         tableTr.append(gameTableElement2);
         tableTr.append(gameTableElement3);
         tableTr.append(gameTableElement4);
-
-        return tableTr;
+        this.gameTable.append(tableTr);
     }
 }
 
