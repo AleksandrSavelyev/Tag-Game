@@ -11,11 +11,12 @@ class View {
 
     init = () => {
         this.root = document.getElementById('root');
-        this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
-        this.topContainer = this.createDiv({className: 'top-container', id: 'top-container'})
         this.timer = this.createTimer({ className: 'main__container-timer', id: 'container-timer' });
         this.startButton = this.createButton({className: 'main__container-start', id: 'container-start'});
+        this.topContainer = this.createDiv({className: 'top-container', id: 'top-container'})
+        this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
         this.movesCalculator = this.createCalculator({className: 'main__container-moves', id: 'container-moves'})
+        
         this.timer.style.borderStyle = 'solid';
         this.timer.style.width = '100px';
         this.movesCalculator.style.borderStyle = 'solid';
@@ -30,7 +31,6 @@ class View {
 
     createDiv = props => {
         const div = document.createElement('div');
-
         props.id && (div.id = props.id);
         props.className && (div.className = props.className);
 
@@ -67,7 +67,7 @@ class View {
 
     createButton = props => {
         const start = document.createElement('button');
-
+        
         start.innerText = 'Let`s go!';
 
         props.id && (start.id = props.id);
@@ -91,16 +91,23 @@ class View {
 
     createGameboard = () => {
         this.root = document.getElementById('root');
-        this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
         this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
+        this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
 
         this.mainContainer.append(this.gameTable);
         this.root.append(this.mainContainer);
     }
 
+    clickGameBoardElement = (cb) => {
+        this.gameTable.addEventListener('click', event => {
+            if(event.path[0].id === 'table-element') {
+                cb(event.target.textContent);
+            }
+        });
+    }
+
     createDiv = props => {
         const div = document.createElement('div');
-
         props.id && (div.id = props.id);
         props.className && (div.className = props.className);
 
@@ -111,6 +118,7 @@ class View {
         const table = document.createElement('table')
         props.className && (table.className = props.className);
         props.id && (table.id = props.id);
+
         table.style.border = 'solid';
         table.style.height = '250px';
         table.style.width = '250px';
@@ -123,6 +131,7 @@ class View {
         props.className && (tableTd.id = props.className);
         props.id && (tableTd.id = props.id);
         props.tdText && (tableTd.innerText = props.tdText);
+        
         tableTd.style.border = 'solid';
         tableTd.style.height = '50px';
         tableTd.style.width = '50px';
@@ -135,14 +144,15 @@ class View {
         const tableTr = document.createElement('tr');
         props.className && (tableTr.id = props.className);
         props.id && (tableTr.id = props.id);
+        
         tableTr.style.border = 'solid';
         tableTr.style.height = '50px';
         tableTr.style.width = '50px';
 
-        const gameTableElement1 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[0]});
-        const gameTableElement2 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[1]});
-        const gameTableElement3 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[2]});
-        const gameTableElement4 = this.createTd({className: 'table__table-element', id: 'table-elemnt', tdText: props.text[3]});
+        const gameTableElement1 = this.createTd({className: 'table__table-element', id: 'table-element', tdText: props.text[0]});
+        const gameTableElement2 = this.createTd({className: 'table__table-element', id: 'table-element', tdText: props.text[1]});
+        const gameTableElement3 = this.createTd({className: 'table__table-element', id: 'table-element', tdText: props.text[2]});
+        const gameTableElement4 = this.createTd({className: 'table__table-element', id: 'table-element', tdText: props.text[3]});
         
         tableTr.append(gameTableElement1);
         tableTr.append(gameTableElement2);

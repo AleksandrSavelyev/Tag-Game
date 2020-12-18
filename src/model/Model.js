@@ -17,6 +17,17 @@ class Model {
             cb(Element);
         });
     }
+
+    getPosition = buttonValue => {
+        for( let i=0; i<4; i++) {
+            let position = this.db[i].indexOf(buttonValue);
+                if(position !== -1) {
+                    let positionDb = [i, position];
+                    
+                    return positionDb;
+                }
+        }
+    };
 }
 
 export default Model;
