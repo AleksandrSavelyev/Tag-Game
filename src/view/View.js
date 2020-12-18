@@ -79,7 +79,7 @@ class View {
         return moves;
     }
 
-    createGameboard = () {
+    createGameboard = () => {
         this.root = document.getElementById('root');
         this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
         this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
