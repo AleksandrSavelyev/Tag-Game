@@ -37,10 +37,6 @@ class View {
         return div;
     }
 
-    timerOn = () => {
-        this.startButton.addEventListener('click', this.startTimer);
-    }
-
      startTimer = () => {
          let milSec = 0;
          let sec = 0;
@@ -69,7 +65,6 @@ class View {
             this.minute.innerText = min + ':';
             this.hour.innerText = hour + ':';
         }, 100);
-
      }
 
     createTimer = props => {
