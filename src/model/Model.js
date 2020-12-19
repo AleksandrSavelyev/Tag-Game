@@ -45,8 +45,7 @@ class Model {
             }
          
         this.newDb = [this.newDb.slice(0, 4), this.newDb.slice(4, 8), this.newDb.slice(8, 12), this.newDb.slice(12)];
-        //console.log(this.newDb);
-        
+        //console.log(this.newDb); 
     }
 
     swapDb = (i1, i2) => { 
@@ -85,13 +84,19 @@ class Model {
     }
 
     changePositionInDb = (elementPosition, zeroPosition) => {
-       // console.log(elementPosition);
-       // console.log(zeroPosition);
-        let currElemPosition = this.newDb[elementPosition[0]][elementPosition[1]];
-       // console.log(currElemPosition);
-        this.newDb[elementPosition[0]][elementPosition[1]] = 0;
-        this.newDb[zeroPosition[0]][zeroPosition[1]] = currElemPosition;
-        //console.log(this.newDb);
+       //console.log(this.newDb);
+       //console.log(this.db);
+       if(this.newDb != this.db){
+            let currElemPosition = this.newDb[elementPosition[0]][elementPosition[1]];
+            // console.log(currElemPosition);
+            this.newDb[elementPosition[0]][elementPosition[1]] = 0;
+            this.newDb[zeroPosition[0]][zeroPosition[1]] = currElemPosition;
+            //console.log(this.newDb);
+            return true; 
+       }else{
+            
+            return false;
+       }
     }
 }
 
