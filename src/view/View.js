@@ -16,13 +16,13 @@ class View {
         this.startButton = this.createButton({className: 'main__container-start', id: 'container-start'});
         this.topContainer = this.createDiv({className: 'top-container', id: 'top-container'})
         this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
-        this.movesCalculator = this.createCalculator({className: 'main__container-moves', id: 'container-moves'})
+        let movesDiv = this.createCalculator({className: 'main__container-moves', id: 'container-moves'})
         
         this.timer.style.borderStyle = 'solid';
         this.timer.style.width = '100px';
-        this.movesCalculator.style.borderStyle = 'solid';
+        movesDiv.style.borderStyle = 'solid';
 
-        this.topContainer.append(this.movesCalculator);
+        this.topContainer.append(movesDiv);
         this.topContainer.append(this.timer);
         this.mainContainer.append(this.topContainer);
         this.mainContainer.append(this.startButton);
@@ -111,15 +111,25 @@ class View {
 
     createCalculator = props => {
         const movesDiv = this.createDiv({className: 'moves-container', id: 'moves-container'})
-        const moves = document.createElement('span');
+        this.movesCalculator = document.createElement('span');
 
-        moves.innerText = '0';
-        movesDiv.append(moves);
+        this.movesCalculator.innerText = '0';
+        movesDiv.append(this.movesCalculator);
 
-        props.id && (moves.id = props.id);
-        props.className && (moves.className = props.className);
+        props.id && (this.movesCalculator.id = props.id);
+        props.className && (this.movesCalculator.className = props.className);
 
         return movesDiv;
+    }
+
+    getMoves = () => {
+        let numberOfMoves = this.movesCalculator.innerText;
+        
+        return numberOfMoves;
+    }
+
+    setMoves = value => {
+        this.movesCalculator.innerText = value;
     }
 
     createGameboard = () => {

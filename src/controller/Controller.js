@@ -34,8 +34,13 @@ class Controller {
         console.log(elementPosition);
         const zeroPosition = this.model.getPosition(0);
         console.log(zeroPosition);
+        //this.model.changePositions(elementPosition, zeroPosition);
+    }
 
-        this.model.changePositions(elementPosition, zeroPosition);
+    incrementMoves = () => {
+        let newMoves = this.view.getMoves();
+        newMoves++;
+        this.view.setMoves(newMoves);
     }
 }
 
