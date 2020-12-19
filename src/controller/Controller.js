@@ -29,13 +29,22 @@ class Controller {
 
     clickGameElement = targetBut => {
         this.curentButtonValue = +targetBut;
-        console.log(this.curentButtonValue);
+        //console.log(this.curentButtonValue);
         const elementPosition = this.model.getPosition(this.curentButtonValue);
-        console.log(elementPosition);
+        //console.log(elementPosition);
         const zeroPosition = this.model.getPosition(0);
-        console.log(zeroPosition, elementPosition);
+        //console.log(zeroPosition, elementPosition);
         let isCheck = this.model.checkZeroPosition(elementPosition);
-        console.log(isCheck);
+        if(isCheck){
+            this.getNewPosition(elementPosition, zeroPosition);
+            this.incrementMoves();
+        }
+    }
+
+    getNewPosition = (elementPosition, zeroPosition) => {
+        this.model.changePositionInDb(elementPosition, zeroPosition);
+        this.view.deleteBoard();
+        this.model.checkoutNewDb(this.printDb.bind(this));
     }
 
     incrementMoves = () => {
