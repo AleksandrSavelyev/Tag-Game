@@ -20,8 +20,7 @@ class Controller {
         this.model.createNewDb();
         this.view.deleteBoard();
         this.model.checkoutNewDb(this.printDb.bind(this));
-        this.view.startTimer();
-        this.incrementMoves();
+        this.view.onOffTimer(true);
     }
 
     printDb = Element => {
@@ -30,11 +29,18 @@ class Controller {
 
     clickGameElement = targetBut => {
         this.curentButtonValue = +targetBut;
-        //console.log(this.curentButtonValue);
+        console.log(this.curentButtonValue);
         const elementPosition = this.model.getPosition(this.curentButtonValue);
         //console.log(elementPosition);
         const zeroPosition = this.model.getPosition(0);
-        //console.log(zeroPosition);
+        //console.log(zeroPosition, elementPosition);
+        let isCheck = this.model.checkZeroPosition(elementPosition,);
+        if(isCheck){
+            this.model.changePositionInDb(elementPosition, zeroPosition);
+            this.incrementMoves();
+            this.view.deleteBoard();
+            this.model.checkoutNewDb(this.printDb.bind(this));
+        }
     }
 
     incrementMoves = () => {
