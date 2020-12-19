@@ -6,6 +6,7 @@ class View {
         this.startButton = null;
         this.topContainer = null;
         this.mainContainer = null;
+        this.tableContainer = null;
         this.movesCalculator = null;
     }
 
@@ -27,6 +28,12 @@ class View {
         this.mainContainer.append(this.startButton);
         this.root.append(this.mainContainer);
 
+    }
+
+    createNewPositionsForNumber = cb => {
+        this.startButton.addEventListener('click', () => {
+            cb();
+        });
     }
 
     createDiv = props => {
@@ -88,10 +95,10 @@ class View {
     createGameboard = () => {
         this.root = document.getElementById('root');
         this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
-        this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
+        this.tableContainer = this.createDiv({ className: 'root__table-container', id: 'table-container' });
 
-        this.mainContainer.append(this.gameTable);
-        this.root.append(this.mainContainer);
+        this.tableContainer.append(this.gameTable);
+        this.root.append(this.tableContainer);
     }
 
     clickGameBoardElement = (cb) => {
@@ -155,6 +162,12 @@ class View {
         tableTr.append(gameTableElement3);
         tableTr.append(gameTableElement4);
         this.gameTable.append(tableTr);
+    }
+
+    deleteBoard = () => {
+        console.log(this.tableContainer);
+        this.gameTable.innerHTML = '';
+        //this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
     }
 }
 
