@@ -21,6 +21,7 @@ class Controller {
         this.view.deleteBoard();
         this.model.checkoutNewDb(this.printDb.bind(this));
         this.view.startTimer();
+        this.incrementMoves();
     }
 
     printDb = Element => {
@@ -34,6 +35,12 @@ class Controller {
         //console.log(elementPosition);
         const zeroPosition = this.model.getPosition(0);
         //console.log(zeroPosition);
+    }
+
+    incrementMoves = () => {
+        let newMoves = this.view.getMoves();
+        newMoves++;
+        this.view.setMoves(newMoves);
     }
 }
 

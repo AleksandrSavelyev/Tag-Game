@@ -30,7 +30,7 @@ class Model {
 
     getPosition = buttonValue => {
         for( let i=0; i<4; i++) {
-            let position = this.db[i].indexOf(buttonValue);
+            let position = this.newdb[i].indexOf(buttonValue);
                 if(position !== -1) {
                     let positionDb = [i, position];
                     
@@ -68,7 +68,9 @@ class Model {
                 }
             }
         }   
-    }     
+    }
+     
+        
 }
 
 export default Model;
