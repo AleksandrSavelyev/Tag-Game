@@ -166,7 +166,8 @@ class View {
 
     deleteBoard = () => {
         console.log(this.tableContainer);
-        this.tableContainer.innerHTML = '';
+        this.gameTable.innerHTML = '';
+        //this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
     }
 }
 
