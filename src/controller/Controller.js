@@ -13,7 +13,13 @@ class Controller {
         this.model.init();
         this.model.checkoutDb(this.printDb.bind(this));
         this.view.clickGameBoardElement(this.clickGameElement.bind(this));
-        this.view.timerOn ();
+        this.view.createNewPositionsForNumber(this.printNewDb.bind(this));
+    }
+
+    printNewDb = () => {
+        this.model.createNewDb();
+        this.view.deleteBoard();
+        this.model.checkoutNewDb(this.printDb.bind(this));
     }
 
     printDb = Element => {
