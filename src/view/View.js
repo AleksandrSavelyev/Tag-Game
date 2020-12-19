@@ -219,7 +219,7 @@ class View {
     }
 
     deleteBoard = () => {
-        console.log(this.tableContainer);
+        //console.log(this.tableContainer);
         this.gameTable.innerHTML = '';
     }
 }
