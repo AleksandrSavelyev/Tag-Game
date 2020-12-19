@@ -44,7 +44,7 @@ class View {
         return div;
     }
 
-     startTimer = () => {
+    startTimer = () => {
          let milSec = 0;
          let sec = 0;
          let min = 0;
@@ -72,7 +72,7 @@ class View {
             this.minute.innerText = min + ':';
             this.hour.innerText = hour + ':';
         }, 100);
-     }
+    }
 
     createTimer = props => {
         this.hour = document.createElement('span')
