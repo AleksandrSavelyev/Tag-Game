@@ -20,6 +20,7 @@ class Controller {
         this.model.createNewDb();
         this.view.deleteBoard();
         this.model.checkoutNewDb(this.printDb.bind(this));
+        this.view.startTimer();
     }
 
     printDb = Element => {
