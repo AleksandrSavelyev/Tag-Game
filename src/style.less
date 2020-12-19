@@ -33,6 +33,7 @@ body {
     font-weight: bold;
     color: white;
     background-color: black;
+    -webkit-user-select: none;
 }
 
 .main__container-timer {
@@ -45,6 +46,7 @@ body {
     font-weight: bold;
     color: white;
     background-color: black;
+    -webkit-user-select: none;
 }
 
 .main__container-start {
@@ -62,11 +64,12 @@ body {
     background-color: black;
     text-transform: capitalize;
     transition: 2000ms;
+    outline: none;
 }
 
 .main__container-start:hover {
-    background-color: red;
-    color: black;
+    background-color: #2e76c4;
+    color: #7bc239;
 }
 
 .main__game-table {
@@ -83,10 +86,11 @@ body {
     font-size: 150%;
     cursor: pointer;
     transition: 300ms;
+    -webkit-user-select: none;
 }
 
 #table-element:hover {
-    background-color: #ffe135;
-    color: orangered;
+    color: #7bc239;
+    background-color: #2e76c4;
     font-size: 43px;
 }

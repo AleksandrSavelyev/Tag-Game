@@ -32,7 +32,7 @@ class View {
 
     createNewPositionsForNumber = cb => {
         this.startButton.addEventListener('click', () => {
-            this.startButton.style.visibility = 'hidden';
+            this.startButton.style.dispaly = 'none';
             cb();
         });
     }
