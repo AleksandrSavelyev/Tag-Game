@@ -13,7 +13,7 @@ class Model {
             [13, 14, 15, 0]
         ]
 
-        console.log(this.db);
+        //console.log(this.db);
     }
 
     checkoutDb = cb => {
@@ -30,7 +30,7 @@ class Model {
 
     getPosition = buttonValue => {
         for( let i=0; i<4; i++) {
-            let position = this.newdb[i].indexOf(buttonValue);
+            let position = this.newDb[i].indexOf(buttonValue);
                 if(position !== -1) {
                     let positionDb = [i, position];
                     
@@ -55,7 +55,7 @@ class Model {
         let t = this.newDb[i1]; 
         this.newDb[i1] = this.newDb[i2]; 
         this.newDb[i2] = t;
-        console.log(this.newDb);
+        //console.log(this.newDb);
     }
     
     checkNewDb = a => {
@@ -69,6 +69,22 @@ class Model {
             }
         }   
     }    
+    
+    checkZeroPosition = position => {
+        let i = position[0];
+        let j = position[1];
+        if( i != 3 && this.newDb[i + 1][j] == 0) {
+            return true;
+        } else if( i != 0 && this.newDb[i - 1][j] == 0) {
+            return true;
+        } else if(this.newDb[i][j + 1] == 0) {
+            return true;
+        } else if(this.newDb[i][j - 1] == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 export default Model;
