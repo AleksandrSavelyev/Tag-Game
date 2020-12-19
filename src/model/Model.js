@@ -68,7 +68,17 @@ class Model {
                 }
             }
         }   
-    }     
+    }  
+
+    changePositions = (elementPosition, zeroPosition) => {
+        console.log(this.newDb);
+        console.log(this.newDb[1, 2]);
+        // let elementText = this.newDb[2,2];
+        // this.newDb[2,2] = 0;
+        // this.newDb[3,3]= elementText;
+
+        // console.log(this.newDb);
+    }
 }
 
 export default Model;
