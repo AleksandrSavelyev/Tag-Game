@@ -33,7 +33,9 @@ class Controller {
         const elementPosition = this.model.getPosition(this.curentButtonValue);
         //console.log(elementPosition);
         const zeroPosition = this.model.getPosition(0);
-        //console.log(zeroPosition);
+        //console.log(zeroPosition, elementPosition);
+        let isCheck = this.model.checkZeroPosition(elementPosition);
+        console.log(isCheck);
     }
 }
 
