@@ -32,9 +32,11 @@ class Controller {
         this.curentButtonValue = +targetBut;
         //console.log(this.curentButtonValue);
         const elementPosition = this.model.getPosition(this.curentButtonValue);
-        //console.log(elementPosition);
+        console.log(elementPosition);
         const zeroPosition = this.model.getPosition(0);
-        //console.log(zeroPosition);
+        console.log(zeroPosition, elementPosition);
+        let isCheck = this.model.checkZeroPosition(elementPosition);
+        console.log(isCheck);
     }
 
     incrementMoves = () => {
