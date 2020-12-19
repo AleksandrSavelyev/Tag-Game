@@ -21,7 +21,6 @@ class Controller {
         this.view.deleteBoard();
         this.model.checkoutNewDb(this.printDb.bind(this));
         this.view.onOffTimer(true);
-        this.incrementMoves();
     }
 
     printDb = Element => {
@@ -30,7 +29,7 @@ class Controller {
 
     clickGameElement = targetBut => {
         this.curentButtonValue = +targetBut;
-        //console.log(this.curentButtonValue);
+        console.log(this.curentButtonValue);
         const elementPosition = this.model.getPosition(this.curentButtonValue);
         //console.log(elementPosition);
         const zeroPosition = this.model.getPosition(0);

@@ -12,8 +12,6 @@ class Model {
             [9, 10, 11, 12], 
             [13, 14, 15, 0]
         ]
-
-        //console.log(this.db);
     }
 
     checkoutDb = cb => {
@@ -84,6 +82,16 @@ class Model {
         } else {
             return false;
         }
+    }
+
+    changePositionInDb = (elementPosition, zeroPosition) => {
+        console.log(elementPosition);
+        console.log(zeroPosition);
+        let currElemPosition = this.newDb[elementPosition[0]][elementPosition[1]];
+        console.log(currElemPosition);
+        this.newDb[elementPosition[0]][elementPosition[1]] = 0;
+        this.newDb[zeroPosition[0]][zeroPosition[1]] = currElemPosition;
+        console.log(this.newDb);
     }
 }
 

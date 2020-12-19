@@ -32,6 +32,7 @@ class View {
 
     createNewPositionsForNumber = cb => {
         this.startButton.addEventListener('click', () => {
+            this.startButton.style.display = 'none';
             cb();
         });
     }
@@ -220,7 +221,6 @@ class View {
     deleteBoard = () => {
         console.log(this.tableContainer);
         this.gameTable.innerHTML = '';
-        //this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
     }
 }
 
