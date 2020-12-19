@@ -31,11 +31,11 @@ class Model {
     getPosition = buttonValue => {
         for( let i=0; i<4; i++) {
             let position = this.newDb[i].indexOf(buttonValue);
-            if(position !== -1) {
-                let positionDb = [i, position];
-                
-                return positionDb;
-            }
+                if(position !== -1) {
+                    let positionDb = [i, position];
+                    
+                    return positionDb;
+                }
         }
     }
 
