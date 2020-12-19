@@ -1,5 +1,5 @@
 {
-  "name": "canvasadors",
+  "name": "Tag-Game",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/behramshah/canvasadors.git"
+    "url": "git+https://github.com/AleksandrSavelyev/Tag-Game.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/behramshah/canvasadors/issues"
+    "url": "https://github.com/AleksandrSavelyev/Tag-Game.git/issues"
   },
-  "homepage": "https://github.com/behramshah/canvasadors#readme",
+  "homepage": "https://github.com/AleksandrSavelyev/Tag-Game.git#readme",
   "dependencies": {
     "@babel/core": "7.7.4",
     "@babel/plugin-proposal-class-properties": "7.7.4",

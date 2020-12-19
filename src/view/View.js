@@ -6,63 +6,101 @@ class View {
         this.startButton = null;
         this.topContainer = null;
         this.mainContainer = null;
+        this.tableContainer = null;
         this.movesCalculator = null;
-        }
+    }
 
     init = () => {
         this.root = document.getElementById('root');
-        this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
-        this.topContainer = this.createDiv({className: 'top-container', id: 'top-container'})
         this.timer = this.createTimer({ className: 'main__container-timer', id: 'container-timer' });
         this.startButton = this.createButton({className: 'main__container-start', id: 'container-start'});
-        this.movesCalculator = this.createCalculator({className: 'main__container-moves', id: 'container-moves'})
+        this.topContainer = this.createDiv({className: 'top-container', id: 'top-container'})
+        this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
+        let movesDiv = this.createCalculator({className: 'main__container-moves', id: 'container-moves'})
+        
         this.timer.style.borderStyle = 'solid';
-        this.movesCalculator.style.borderStyle = 'solid';
+        this.timer.style.width = '100px';
+        movesDiv.style.borderStyle = 'solid';
 
-        this.topContainer.append(this.movesCalculator);
+        this.topContainer.append(movesDiv);
         this.topContainer.append(this.timer);
         this.mainContainer.append(this.topContainer);
         this.mainContainer.append(this.startButton);
         this.root.append(this.mainContainer);
 
-        this.createGameboard();
+    }
+
+    createNewPositionsForNumber = cb => {
+        this.startButton.addEventListener('click', () => {
+            cb();
+        });
     }
 
     createDiv = props => {
         const div = document.createElement('div');
-
         props.id && (div.id = props.id);
         props.className && (div.className = props.className);
 
         return div;
     }
 
+    startTimer = () => {
+         let milSec = 0;
+         let sec = 0;
+         let min = 0;
+         let hour = 0;
+         setInterval(() => {
+            milSec++;
+            
+            if(milSec == 10) {
+            milSec = 0;
+            sec++;
+            } else if(sec == 60) {
+                sec = 0;
+                min++;
+            } else if(min === 60) {
+                min = 0;
+                hour++;
+            }
+
+            if(milSec <= 9) {
+            milSec = "0" + milSec;
+            }
+            
+            this.millisec.innerText = milSec;
+            this.second.innerText = sec + ':';
+            this.minute.innerText = min + ':';
+            this.hour.innerText = hour + ':';
+        }, 100);
+    }
+
     createTimer = props => {
-        const hour = document.createElement('span')
-        const minute = document.createElement('span');
-        const second = document.createElement('span');
-        const millisec = document.createElement('span');
+        this.hour = document.createElement('span')
+        this.minute = document.createElement('span');
+        this.second = document.createElement('span');
+        this.millisec = document.createElement('span');
         const timerDiv = this.createDiv({className: 'main__time-container', id: 'time-container'})
 
-        hour.innerText = '00' + ':';
-        second.innerText = '00' + ':';
-        minute.innerText = '00' + ':';
-        millisec.innerText = '00';
+        this.hour.innerText = '00' + ':';
+        this.second.innerText = '00' + ':';
+        this.minute.innerText = '00' + ':';
+        this.millisec.innerText = '00';
 
-        timerDiv.append(hour);
-        timerDiv.append(minute);
-        timerDiv.append(second);
-        timerDiv.append(millisec);
+        timerDiv.append(this.hour);
+        timerDiv.append(this.minute);
+        timerDiv.append(this.second);
+        timerDiv.append(this.millisec);
                 
         props.id && (timerDiv.id = props.id);
         props.className && (timerDiv.className = props.className);
+
 
         return timerDiv;
     }
 
     createButton = props => {
         const start = document.createElement('button');
-
+        
         start.innerText = 'Let`s go!';
 
         props.id && (start.id = props.id);
@@ -73,37 +111,46 @@ class View {
 
     createCalculator = props => {
         const movesDiv = this.createDiv({className: 'moves-container', id: 'moves-container'})
-        const moves = document.createElement('span');
+        this.movesCalculator = document.createElement('span');
 
-        moves.innerText = '0';
-        movesDiv.append(moves);
+        this.movesCalculator.innerText = '0';
+        movesDiv.append(this.movesCalculator);
 
-        props.id && (moves.id = props.id);
-        props.className && (moves.className = props.className);
+        props.id && (this.movesCalculator.id = props.id);
+        props.className && (this.movesCalculator.className = props.className);
 
         return movesDiv;
     }
 
+    getMoves = () => {
+        let numberOfMoves = this.movesCalculator.innerText;
+        
+        return numberOfMoves;
+    }
+
+    setMoves = value => {
+        this.movesCalculator.innerText = value;
+    }
+
     createGameboard = () => {
         this.root = document.getElementById('root');
-        this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
         this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
-        const gameTableLine1 = this.createTr({ className: 'table__table-line', id: 'table-line' });
-        const gameTableLine2 = this.createTr({ className: 'table__table-line', id: 'table-line' });
-        const gameTableLine3 = this.createTr({ className: 'table__table-line', id: 'table-line' });
-        const gameTableLine4 = this.createTr({ className: 'table__table-line', id: 'table-line' });
-        
-        this.gameTable.append(gameTableLine1);
-        this.gameTable.append(gameTableLine2);
-        this.gameTable.append(gameTableLine3);
-        this.gameTable.append(gameTableLine4);
-        this.mainContainer.append(this.gameTable);
-        this.root.append(this.mainContainer);
+        this.tableContainer = this.createDiv({ className: 'root__table-container', id: 'table-container' });
+
+        this.tableContainer.append(this.gameTable);
+        this.root.append(this.tableContainer);
+    }
+
+    clickGameBoardElement = (cb) => {
+        this.gameTable.addEventListener('click', event => {
+            if(event.path[0].id === 'table-element') {
+                cb(event.target.textContent);
+            }
+        });
     }
 
     createDiv = props => {
         const div = document.createElement('div');
-
         props.id && (div.id = props.id);
         props.className && (div.className = props.className);
 
@@ -114,6 +161,7 @@ class View {
         const table = document.createElement('table')
         props.className && (table.className = props.className);
         props.id && (table.id = props.id);
+
         table.style.border = 'solid';
         table.style.height = '250px';
         table.style.width = '250px';
@@ -122,10 +170,12 @@ class View {
         return table;
     }
 
-    createTb = props => {
+    createTd = props => {
         const tableTd = document.createElement('td');
         props.className && (tableTd.id = props.className);
         props.id && (tableTd.id = props.id);
+        props.tdText && (tableTd.innerText = props.tdText);
+        
         tableTd.style.border = 'solid';
         tableTd.style.height = '50px';
         tableTd.style.width = '50px';
@@ -138,6 +188,7 @@ class View {
         const tableTr = document.createElement('tr');
         props.className && (tableTr.id = props.className);
         props.id && (tableTr.id = props.id);
+        
         tableTr.style.border = 'solid';
         tableTr.style.height = '50px';
         tableTr.style.width = '50px';
@@ -151,8 +202,13 @@ class View {
         tableTr.append(gameTableElement2);
         tableTr.append(gameTableElement3);
         tableTr.append(gameTableElement4);
+        this.gameTable.append(tableTr);
+    }
 
-        return tableTr;
+    deleteBoard = () => {
+        console.log(this.tableContainer);
+        this.gameTable.innerHTML = '';
+        //this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
     }
 }
 

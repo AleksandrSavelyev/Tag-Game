@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./style.less";
 import Controller from "./controller/Controller";
 import View from "./view/View";
