@@ -39,7 +39,7 @@ class Model {
 
     createNewDb = () => {
         this.newDb = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].sort(function() { return Math.random()-.5; }).concat(0);
-        console.log(this.newDb);
+        //console.log(this.newDb);
             if (!this.checkNewDb(this.newDb)){
                 this.swapDb(0, 1);
             }
@@ -86,16 +86,21 @@ class Model {
     changePositionInDb = (elementPosition, zeroPosition) => {
        //console.log(this.newDb);
        //console.log(this.db);
-       if(this.newDb != this.db){
             let currElemPosition = this.newDb[elementPosition[0]][elementPosition[1]];
             // console.log(currElemPosition);
             this.newDb[elementPosition[0]][elementPosition[1]] = 0;
             this.newDb[zeroPosition[0]][zeroPosition[1]] = currElemPosition;
             //console.log(this.newDb);
-            return true; 
-       }else{
+            this.compareDatabases();
+    }
+
+    compareDatabases = () => {
+        if(this.newDb == this.db){
+
+            console.log("win");
+        }else{
             
-            return false;
+            console.log("go");
        }
     }
 }
