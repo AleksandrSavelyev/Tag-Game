@@ -33,6 +33,7 @@ class View {
     createNewPositionsForNumber = cb => {
         this.startButton.addEventListener('click', () => {
             this.startButton.style.display = 'none';
+            this.resetMoves();
             cb();
         });
     }
