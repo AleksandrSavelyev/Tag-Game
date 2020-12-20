@@ -207,9 +207,10 @@ class View {
         props.className && (tableTr.id = props.className);
         props.id && (tableTr.id = props.id);
         
-        tableTr.style.border = 'solid';
-        tableTr.style.height = '50px';
-        tableTr.style.width = '50px';
+        // tableTr.style.border = 'solid';
+        // tableTr.style.height = '50px';
+        // tableTr.style.width = '50px';
+        tableTr.style.color = 'white';
 
         const gameTableElement1 = this.createTd({className: 'table__table-element', id: 'table-element', tdText: props.text[0]});
         const gameTableElement2 = this.createTd({className: 'table__table-element', id: 'table-element', tdText: props.text[1]});

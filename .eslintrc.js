@@ -17,6 +17,9 @@ module.exports = {
     "plugins": [
         "react"
     ],
+    "standard": {
+        "parser": "babel-eslint"
+    },
     "rules": {
         "semi": ["error", "always"],
         "quotes": ["error", "double"]
