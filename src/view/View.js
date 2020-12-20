@@ -47,11 +47,11 @@ class View {
     }
 
     startTimer = () => {
-         let milSec = 0;
-         let sec = 0;
-         let min = 0;
-         let hour = 0;
-         this.timerId = setInterval(() => {
+        let milSec = 0;
+        let sec = 0;
+        let min = 0;
+        let hour = 0;
+        this.timerId = setInterval(() => {
             milSec++;
             
             if(milSec == 10) {
@@ -206,10 +206,7 @@ class View {
         const tableTr = document.createElement('tr');
         props.className && (tableTr.id = props.className);
         props.id && (tableTr.id = props.id);
-        
-        // tableTr.style.border = 'solid';
-        // tableTr.style.height = '50px';
-        // tableTr.style.width = '50px';
+
         tableTr.style.color = 'white';
 
         const gameTableElement1 = this.createTd({className: 'table__table-element', id: 'table-element', tdText: props.text[0]});
