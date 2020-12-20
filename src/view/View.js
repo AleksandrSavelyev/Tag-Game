@@ -224,7 +224,6 @@ class View {
     }
 
     deleteBoard = () => {
-        //console.log(this.tableContainer);
         this.gameTable.innerHTML = '';
     }
 
