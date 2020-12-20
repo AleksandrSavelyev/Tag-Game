@@ -40,6 +40,7 @@ class Controller {
             result = this.model.changePositionInDb(elementPosition, zeroPosition);
             this.incrementMoves();
             this.view.deleteBoard();
+            this.model.clearCurrentDb();
             this.model.checkoutNewDb(this.printDb.bind(this));
         }
 

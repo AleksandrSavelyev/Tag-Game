@@ -96,8 +96,8 @@ class Model {
     }
 
     compareDatabases = () => {
-        console.log(this.newDb.join());
-        console.log(this.db.join());
+        //console.log(this.newDb.join());
+        //console.log(this.db.join());
         if(this.newDb.join() == this.db.join()){
 
             return true;
@@ -105,6 +105,10 @@ class Model {
 
             return false;
         }
+    }
+
+    clearCurrentDb = () => {
+        this.newDb = [];
     }
 }
 
