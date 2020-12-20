@@ -29,17 +29,24 @@ class Controller {
 
     clickGameElement = targetBut => {
         this.curentButtonValue = +targetBut;
-        //console.log(this.curentButtonValue);
+        console.log(this.curentButtonValue);
         const elementPosition = this.model.getPosition(this.curentButtonValue);
         //console.log(elementPosition);
         const zeroPosition = this.model.getPosition(0);
         //console.log(zeroPosition, elementPosition);
         let isCheck = this.model.checkZeroPosition(elementPosition);
+        let result;
         if(isCheck){
-            this.model.changePositionInDb(elementPosition, zeroPosition);
+            result = this.model.changePositionInDb(elementPosition, zeroPosition);
             this.incrementMoves();
             this.view.deleteBoard();
             this.model.checkoutNewDb(this.printDb.bind(this));
+        }
+
+        if(result){
+            this.view.makeStartButtonVisible();
+            this.view.deleteBoard();
+            this.model.checkoutDb(this.printDb.bind(this));
         }
     }
 
@@ -47,8 +54,8 @@ class Controller {
         let newMoves = this.view.getMoves();
         newMoves++;
         this.view.setMoves(newMoves);
+        this.model.checkoutDb(this.printDb.bind(this));
     }
-    
 }
 
 export default Controller;
