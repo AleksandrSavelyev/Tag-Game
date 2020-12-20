@@ -222,6 +222,10 @@ class View {
         //console.log(this.tableContainer);
         this.gameTable.innerHTML = '';
     }
+
+    makeStartButtonVisible = () => {
+        this.startButton.style.display ='block';
+    }
 }
 
 export default View;

@@ -34,12 +34,20 @@ class Controller {
         //console.log(elementPosition);
         const zeroPosition = this.model.getPosition(0);
         //console.log(zeroPosition, elementPosition);
-        let isCheck = this.model.checkZeroPosition(elementPosition,);
+        let isCheck = this.model.checkZeroPosition(elementPosition);
+        let result;
         if(isCheck){
-            this.model.changePositionInDb(elementPosition, zeroPosition);
+            result = this.model.changePositionInDb(elementPosition, zeroPosition);
             this.incrementMoves();
             this.view.deleteBoard();
             this.model.checkoutNewDb(this.printDb.bind(this));
+        }
+
+        if(result){
+            this.view.makeStartButtonVisible();
+            this.view.deleteBoard();
+            this.model.checkoutDb(this.printDb.bind(this));
+            this.model.clearCurrentDb();
         }
     }
 
@@ -47,6 +55,7 @@ class Controller {
         let newMoves = this.view.getMoves();
         newMoves++;
         this.view.setMoves(newMoves);
+        this.model.checkoutDb(this.printDb.bind(this));
     }
 }
 
