@@ -32,7 +32,8 @@ class View {
 
     createNewPositionsForNumber = cb => {
         this.startButton.addEventListener('click', () => {
-            this.startButton.style.dispaly = 'none';
+            this.startButton.style.display = 'none';
+            this.resetMoves();
             cb();
         });
     }
@@ -75,17 +76,17 @@ class View {
         }, 100);
     }
 
-    onOffTimer = isTimerController => {
+    onOffTimer = () => {
         this.hour.innerText = '00' + ':';
         this.second.innerText = '00' + ':';
         this.minute.innerText = '00' + ':';
         this.millisec.innerText = '00';
-        if(isTimerController){
-            clearInterval(this.timerId);
-            this.startTimer();
-        } else {
-            clearInterval(this.timerId);
-        }
+        clearInterval(this.timerId);
+        this.startTimer();
+    }
+
+    stopTimer = () => {
+        clearInterval(this.timerId);
     }
 
     createTimer = props => {
@@ -144,6 +145,10 @@ class View {
 
     setMoves = value => {
         this.movesCalculator.innerText = value;
+    }
+
+    resetMoves = () => {
+        this.movesCalculator.innerText = 0;
     }
 
     createGameboard = () => {
@@ -220,8 +225,11 @@ class View {
     }
 
     deleteBoard = () => {
-        //console.log(this.tableContainer);
         this.gameTable.innerHTML = '';
+    }
+
+    makeStartButtonVisible = () => {
+        this.startButton.style.display ='block';
     }
 }
 
