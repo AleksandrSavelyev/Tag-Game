@@ -75,17 +75,17 @@ class View {
         }, 100);
     }
 
-    onOffTimer = isTimerController => {
+    onOffTimer = () => {
         this.hour.innerText = '00' + ':';
         this.second.innerText = '00' + ':';
         this.minute.innerText = '00' + ':';
         this.millisec.innerText = '00';
-        if(isTimerController){
-            clearInterval(this.timerId);
-            this.startTimer();
-        } else {
-            clearInterval(this.timerId);
-        }
+        clearInterval(this.timerId);
+        this.startTimer();
+    }
+
+    stopTimer = () => {
+        clearInterval(this.timerId);
     }
 
     createTimer = props => {
