@@ -146,6 +146,10 @@ class View {
         this.movesCalculator.innerText = value;
     }
 
+    resetMoves = () => {
+        this.movesCalculator.innerText = 0;
+    }
+
     createGameboard = () => {
         this.root = document.getElementById('root');
         this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
