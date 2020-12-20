@@ -53,7 +53,6 @@ class Controller {
         let newMoves = this.view.getMoves();
         newMoves++;
         this.view.setMoves(newMoves);
-        this.model.checkoutDb(this.printDb.bind(this));
     }
 }
 
