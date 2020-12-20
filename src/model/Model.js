@@ -90,7 +90,7 @@ class Model {
             this.newDb[zeroPosition[0]][zeroPosition[1]] = currElemPosition;
             //console.log(this.newDb);
             let result = this.compareDatabases();
-            console.log(result);
+            //console.log(result);
             
             return result;
     }
