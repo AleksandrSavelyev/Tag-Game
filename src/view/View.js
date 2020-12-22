@@ -7,6 +7,7 @@ class View {
         this.saveButton = null;
         this.startButton = null;
         this.topContainer = null;
+        this.currentTimer = null; 
         this.footContainer = null;
         this.mainContainer = null;
         this.tableContainer = null;
@@ -35,6 +36,13 @@ class View {
         this.mainContainer.append(this.topContainer);
         this.mainContainer.append(this.startButton);
         this.root.append(this.mainContainer);
+    }
+
+    activateSaveButton = cb => {
+        this.saveButton.addEventListener('click', () => {
+            console.log(this.currentTimer);
+            cb(this.movesCalculator.innerText, this.currentTimer);  
+        });
     }
 
     createNewPositionsForNumber = cb => {
@@ -80,6 +88,7 @@ class View {
             this.second.innerText = sec + ':';
             this.minute.innerText = min + ':';
             this.hour.innerText = hour + ':';
+            this.currentTimer = this.hour.innerText + this.minute.innerText + this.second.innerText + this.millisec.innerText;
         }, 100);
     }
 
@@ -88,6 +97,7 @@ class View {
         this.second.innerText = '00' + ':';
         this.minute.innerText = '00' + ':';
         this.millisec.innerText = '00';
+        this.currentTimer = this.hour.innerText + this.minute.innerText + this.second.innerText + this.millisec.innerText;
         clearInterval(this.timerId);
         this.startTimer();
     }
@@ -107,6 +117,7 @@ class View {
         this.second.innerText = '00' + ':';
         this.minute.innerText = '00' + ':';
         this.millisec.innerText = '00';
+        this.currentTimer = this.hour.innerText + this.minute.innerText + this.second.innerText + this.millisec.innerText;
 
         timerDiv.append(this.hour);
         timerDiv.append(this.minute);

@@ -1,4 +1,4 @@
-class Controller {
+import class Controller {
     constructor (view, model) {
         this.view = view;
         this.model = model;
@@ -14,6 +14,11 @@ class Controller {
         this.model.checkoutDb(this.printDb.bind(this));
         this.view.clickGameBoardElement(this.clickGameElement.bind(this));
         this.view.createNewPositionsForNumber(this.printNewDb.bind(this));
+        this.view.activateSaveButton(this.saveMovesAndTimerbind(this));
+    }
+
+    saveMovesAndTimer = (moves, timer) => {
+        this.model.saveAllInfoAboutGame(moves, timer);
     }
 
     printNewDb = () => {
