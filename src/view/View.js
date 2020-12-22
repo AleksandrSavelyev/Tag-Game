@@ -2,11 +2,13 @@ class View {
     constructor () {
         this.root = null;
         this.timer = null;
+        this.savedList = null;
         this.gameTable = null;
         this.saveButton = null;
         this.startButton = null;
         this.topContainer = null;
         this.currentTimer = null; 
+        this.footContainer = null;
         this.mainContainer = null;
         this.tableContainer = null;
         this.movesCalculator = null;
@@ -16,9 +18,14 @@ class View {
         this.root = document.getElementById('root');
         this.timer = this.createTimer({ className: 'main__container-timer', id: 'container-timer' });
         this.startButton = this.createButton({className: 'main__container-start', id: 'container-start'});
-        this.topContainer = this.createDiv({className: 'top-container', id: 'top-container'})
+        this.topContainer = this.createDiv({ className: 'top-container', id: 'top-container'});
         this.mainContainer = this.createDiv({ className: 'root__main-container', id: 'main-container' });
-        let movesDiv = this.createCalculator({className: 'main__container-moves', id: 'container-moves'})
+        const movesDiv = this.createCalculator({ className: 'main__container-moves', id: 'container-moves' });
+        this.saveButton = this.createButton({ className: 'main__container-save', id: 'root-save' });
+        this.saveButton.innerHTML = 'Save';
+        this.footContainer = this.createDiv({ className: 'root__foot-container', id: 'foot-container' })
+        this.savedList = this.createSavedList({ className: 'foot-list', id: 'foot-list' })
+
         
         this.timer.style.borderStyle = 'solid';
         this.timer.style.width = '100px';
@@ -29,7 +36,6 @@ class View {
         this.mainContainer.append(this.topContainer);
         this.mainContainer.append(this.startButton);
         this.root.append(this.mainContainer);
-
     }
 
     activateSaveButton = cb => {
@@ -105,7 +111,7 @@ class View {
         this.minute = document.createElement('span');
         this.second = document.createElement('span');
         this.millisec = document.createElement('span');
-        const timerDiv = this.createDiv({className: 'main__time-container', id: 'time-container'})
+        const timerDiv = this.createDiv({ className: 'main__time-container', id: 'time-container' })
 
         this.hour.innerText = '00' + ':';
         this.second.innerText = '00' + ':';
@@ -170,6 +176,9 @@ class View {
 
         this.tableContainer.append(this.gameTable);
         this.root.append(this.tableContainer);
+        this.root.append(this.footContainer);
+        this.footContainer.append(this.saveButton);
+        this.footContainer.append(this.savedList);
     }
 
     clickGameBoardElement = (cb) => {
@@ -239,6 +248,24 @@ class View {
 
     makeStartButtonVisible = () => {
         this.startButton.style.display ='block';
+    }
+
+    createSavedList = props => {
+        const savedList = document.createElement('ul');
+
+        props.className && (savedList.className = props.className);
+        props.id && (savedList.id = props.id);
+        
+        return savedList;
+    }
+
+    createSavedElement = props => {
+        const savedGame = document.createElement('li');
+
+        props.className && (savedGame.className = props.className);
+        props.id && (savedGame.id = props.id);
+
+        return savedGame;
     }
 }
 
