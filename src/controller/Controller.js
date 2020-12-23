@@ -14,7 +14,6 @@ class Controller {
     
     init = () => {
         this.view.init();
-        this.view.startSavedGemeTimer('0:2:10:04');
         this.view.createGameboard()
         this.model.init();
         this.model.checkoutDb(this.printDb.bind(this));
@@ -86,8 +85,8 @@ class Controller {
         const game = getGameId(id);
 
         this.model.changeDb(game.numbersPosition);
-        this.view. //изменение текущих показаний таймера (game.timer)
-        this.view. //изменение текущих показаний счетчика (game.moves)
+        this.view.startSavedGemeTimer(game.timer);
+        this.view.setMoves(game.moves);
     }
 }
 
