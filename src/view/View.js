@@ -23,8 +23,7 @@ class View {
         const movesDiv = this.createCalculator({ className: 'main__container-moves', id: 'container-moves' });
         this.saveButton = this.createButton({ className: 'main__container-save', id: 'root-save' });
         this.saveButton.innerHTML = 'Save';
-        this.footContainer = this.createDiv({ className: 'root__foot-container', id: 'foot-container' })
-        this.savedList = this.createSavedList({ className: 'foot-list', id: 'foot-list' })
+        this.footContainer = this.createDiv({ className: 'root__foot-container', id: 'foot-container' });
 
         
         this.timer.style.borderStyle = 'solid';
@@ -40,16 +39,14 @@ class View {
 
     activateSaveButton = cb => {
         this.saveButton.addEventListener('click', () => {
-            console.log(this.currentTimer);
             cb(this.movesCalculator.innerText, this.currentTimer);  
         });
     }
 
     createNewPositionsForNumber = cb => {
         this.startButton.addEventListener('click', () => {
-            this.startButton.style.display = 'none';
+            cb(this.movesCalculator.innerText, this.currentTimer);  
             this.resetMoves();
-            cb();
         });
     }
 
@@ -170,15 +167,13 @@ class View {
     }
 
     createGameboard = () => {
-        this.root = document.getElementById('root');
         this.gameTable = this.createTable({ className: 'main__game-table', id: 'game-table' });
         this.tableContainer = this.createDiv({ className: 'root__table-container', id: 'table-container' });
 
         this.tableContainer.append(this.gameTable);
         this.root.append(this.tableContainer);
         this.root.append(this.footContainer);
-        this.footContainer.append(this.saveButton);
-        this.footContainer.append(this.savedList);
+        this.root.append(this.saveButton);
     }
 
     clickGameBoardElement = (cb) => {
@@ -187,14 +182,6 @@ class View {
                 cb(event.target.textContent);
             }
         });
-    }
-
-    createDiv = props => {
-        const div = document.createElement('div');
-        props.id && (div.id = props.id);
-        props.className && (div.className = props.className);
-
-        return div;
     }
 
     createTable = props => {
@@ -246,26 +233,29 @@ class View {
         this.gameTable.innerHTML = '';
     }
 
-    makeStartButtonVisible = () => {
-        this.startButton.style.display ='block';
-    }
+    createSavedList = (gamesCount, props) => {
+        this.footContainer.innerHTML = '';
 
-    createSavedList = props => {
         const savedList = document.createElement('ul');
 
         props.className && (savedList.className = props.className);
         props.id && (savedList.id = props.id);
         
-        return savedList;
+        for(let i = 1; i <= gamesCount; i++){
+            const li = this.createSavedElement({ id: i, className: 'list__game-numb'});
+            this.savedList.append(li);
+        }
+
+        this.footContainer.append(this.savedList);
     }
 
     createSavedElement = props => {
-        const savedGame = document.createElement('li');
+        const li = document.createElement('li');
 
         props.className && (savedGame.className = props.className);
         props.id && (savedGame.id = props.id);
 
-        return savedGame;
+        return li;
     }
 }
 

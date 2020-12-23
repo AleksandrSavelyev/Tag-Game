@@ -1,9 +1,7 @@
-const addNewGame = require('addNewGame');
 class Model {
     constructor(){
         this.db = [];
         this.newDb = [];
-        this.addnewGame = addNewGame;
         this.currentButtonValue = null;
     }
 
@@ -105,11 +103,7 @@ class Model {
         this.newDb = [];
     }
 
-    saveAllInfoAboutGame = (moves, timer) => {
-        const gameInfo  = { numbersPosition: this.newDb, moves: moves, timer: timer };
-
-        this.addnewGame.addnewGame(gameInfo).then(res => console.log(res));
-    }
+    getCurrentPositionOfNumbers = () => { return this.newDb; }
 }
 
 export default Model;
