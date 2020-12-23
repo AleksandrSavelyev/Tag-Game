@@ -84,8 +84,8 @@ class Controller {
         const game = getGameId(id);
 
         this.model.changeDb(game.numbersPosition);
-        this.view. //изменение показаний таймера и его работа (game.timer)
-        this.view. //изменение показаний счетчика и его работа (game.moves)
+        this.view. //изменение текущих показаний таймера (game.timer)
+        this.view. //изменение текущих показаний счетчика (game.moves)
     }
 }
 
