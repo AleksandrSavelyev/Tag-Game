@@ -110,7 +110,7 @@ class View {
         clearInterval(this.timerId);
     }
 
-    startSavedGemeTimer = timer => {
+    startSavedGameTimer = timer => {
         let timerElement = timer.split(':');
         this.hou = +timerElement[0];
         this.min = +timerElement[1];

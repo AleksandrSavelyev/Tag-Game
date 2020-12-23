@@ -1,6 +1,4 @@
-import {addNewGame} from "./Rest";
-import {getGameId} from "./Rest";
-import {getAllGames} from "./Rest";
+import {addNewGame, getGame, getAllGames} from './Rest';
 
 class Controller {
     constructor (view, model) {
@@ -8,8 +6,6 @@ class Controller {
         this.model = model;
         this.newGameId = null;
         this.curentButtonValue = null;
-
-        this.init();
     }
     
     init = () => {
@@ -72,20 +68,20 @@ class Controller {
         const numbPosition = this.model.getCurrentPositionOfNumbers();
         this.incrementId();
         const gameInfo  = { id: this.newGameId, numbersPosition: numbPosition, moves: moves, timer: timer };
-
         addNewGame(gameInfo).then(res => console.log(res));
     }
 
     getInfoAboutAllGames = () => {
         const  gamesCount = getAllGames();
+
         this.view.createSavedList(gamesCount, { className: 'foot-list', id: 'foot-list' });
     }
 
     getInfoAboutGame = id => {
-        const game = getGameId(id);
+        const game = getGame(id);
 
         this.model.changeDb(game.numbersPosition);
-        this.view.startSavedGemeTimer(game.timer);
+        this.view.startSavedGameTimer(game.timer);
         this.view.setMoves(game.moves);
     }
 }

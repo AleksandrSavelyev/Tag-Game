@@ -8,7 +8,7 @@ export async function addNewGame(newGame){
     });
 }
 
-export async function getGameId(id){
+export async function getGame(id){
     const resp = await fetch('http://localhost:3000/getGame/id', {
         method: 'POST',
         headers: {
@@ -29,3 +29,9 @@ export async function getAllGames(){
 
     return data;
 }
+
+// function* generator() {
+//     yield 1;
+//     yield 2;
+//     yield 3;
+// }
