@@ -79,6 +79,14 @@ class Controller {
         const  gamesCount = getAllGames();
         this.view.createSavedList(gamesCount, { className: 'foot-list', id: 'foot-list' });
     }
+
+    getInfoAboutGame = id => {
+        const game = getGameId(id);
+
+        this.model.changeDb(game.numbersPosition);
+        this.view. //изменение показаний таймера и его работа (game.timer)
+        this.view. //изменение показаний счетчика и его работа (game.moves)
+    }
 }
 
 export default Controller;

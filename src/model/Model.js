@@ -103,6 +103,11 @@ class Model {
         this.newDb = [];
     }
 
+    changeDb = db => {
+
+        this.newDb = db;
+    }
+
     getCurrentPositionOfNumbers = () => { return this.newDb; }
 }
 
