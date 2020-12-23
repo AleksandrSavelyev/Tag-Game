@@ -43,6 +43,13 @@ class View {
         });
     }
 
+    activSavedList = cb => {
+        this.savedList.addEventListener('click', event => {
+            cb(event.target.id);
+        });
+    }
+
+
     createNewPositionsForNumber = cb => {
         this.startButton.addEventListener('click', () => {
             cb(this.movesCalculator.innerText, this.currentTimer);  
@@ -59,32 +66,28 @@ class View {
     }
 
     startTimer = () => {
-        let milSec = 0;
-        let sec = 0;
-        let min = 0;
-        let hour = 0;
         this.timerId = setInterval(() => {
-            milSec++;
+            this.milSec++;
             
-            if(milSec == 10) {
-            milSec = 0;
-            sec++;
-            } else if(sec == 60) {
-                sec = 0;
-                min++;
-            } else if(min === 60) {
-                min = 0;
-                hour++;
+            if(this.milSec == 10) {
+                this.milSec = 0;
+                this.sec++;
+            } else if(this.sec == 60) {
+                this.sec = 0;
+                this.min++;
+            } else if(this.min === 60) {
+                this.min = 0;
+                this.hou++;
             }
 
-            if(milSec <= 9) {
-            milSec = "0" + milSec;
+            if(this.milSec <= 9) {
+                this.milSec = "0" + this.milSec;
             }
             
-            this.millisec.innerText = milSec;
-            this.second.innerText = sec + ':';
-            this.minute.innerText = min + ':';
-            this.hour.innerText = hour + ':';
+            this.millisec.innerText = this.milSec;
+            this.second.innerText = this.sec + ':';
+            this.minute.innerText = this.min + ':';
+            this.hour.innerText = this.hou + ':';
             this.currentTimer = this.hour.innerText + this.minute.innerText + this.second.innerText + this.millisec.innerText;
         }, 100);
     }
@@ -94,6 +97,10 @@ class View {
         this.second.innerText = '00' + ':';
         this.minute.innerText = '00' + ':';
         this.millisec.innerText = '00';
+        this.hou = 0;
+        this.min = 0;
+        this.sec = 0;
+        this.milSec = 0;
         this.currentTimer = this.hour.innerText + this.minute.innerText + this.second.innerText + this.millisec.innerText;
         clearInterval(this.timerId);
         this.startTimer();
@@ -101,6 +108,15 @@ class View {
 
     stopTimer = () => {
         clearInterval(this.timerId);
+    }
+
+    startSavedGemeTimer = timer => {
+        let timerElement = timer.split(':');
+        this.hou = +timerElement[0];
+        this.min = +timerElement[1];
+        this.sec = +timerElement[2];
+        this.milSec = +timerElement[3];
+        startTimer();
     }
 
     createTimer = props => {

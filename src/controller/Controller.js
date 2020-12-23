@@ -14,6 +14,7 @@ class Controller {
     
     init = () => {
         this.view.init();
+        this.view.startSavedGemeTimer('0:2:10:04');
         this.view.createGameboard()
         this.model.init();
         this.model.checkoutDb(this.printDb.bind(this));
@@ -21,6 +22,7 @@ class Controller {
         this.view.createNewPositionsForNumber(this.printNewDb.bind(this));
         this.view.activateSaveButton(this.saveAllInfoAboutGame.bind(this));
         this.getInfoAboutAllGames();
+        this.view.activSavedList(getGameId);
     }
     
     printNewDb = (moves, timer) => {
