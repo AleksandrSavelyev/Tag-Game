@@ -1,4 +1,4 @@
-import {addNewGame, getGame, getAllGames} from './Rest';
+import * as api from  './Rest';
 
 class Controller {
     constructor (view, model) {
@@ -17,7 +17,6 @@ class Controller {
         this.view.createNewPositionsForNumber(this.printNewDb.bind(this));
         this.view.activateSaveButton(this.saveAllInfoAboutGame.bind(this));
         this.getInfoAboutAllGames();
-        this.view.activSavedList(getGameId);
     }
     
     printNewDb = (moves, timer) => {
@@ -46,7 +45,6 @@ class Controller {
         }
         
         if(result){
-            this.view.makeStartButtonVisible();
             this.view.deleteBoard();
             this.model.checkoutDb(this.printDb.bind(this));
             this.model.clearCurrentDb();
@@ -65,24 +63,32 @@ class Controller {
     }
     
     saveAllInfoAboutGame = (moves, timer) => {
-        const numbPosition = this.model.getCurrentPositionOfNumbers();
-        this.incrementId();
-        const gameInfo  = { id: this.newGameId, numbersPosition: numbPosition, moves: moves, timer: timer };
-        addNewGame(gameInfo).then(res => console.log(res));
+        if(moves!= 0){
+            const numbPosition = this.model.getCurrentPositionOfNumbers();
+            this.incrementId();
+            const gameInfo  = { id: this.newGameId, numbersPosition: numbPosition, moves: moves, timer: timer };
+            api.addNewGame(gameInfo).then(this.getInfoAboutAllGames());
+        }
     }
 
     getInfoAboutAllGames = () => {
-        const  gamesCount = getAllGames();
+        api.getAllGames()
+            .then(count => {
+                console.log('count', count);
+                this.view.createSavedList(count, { className: 'foot-list', id: 'foot-list' });
+                this.view.activSavedList(this.getInfoAboutGame.bind(this));
+            });
 
-        this.view.createSavedList(gamesCount, { className: 'foot-list', id: 'foot-list' });
     }
 
     getInfoAboutGame = id => {
-        const game = getGame(id);
-
-        this.model.changeDb(game.numbersPosition);
-        this.view.startSavedGameTimer(game.timer);
-        this.view.setMoves(game.moves);
+        api.getGame(id)
+            .then(game => {
+                console.log('game', game);
+                this.model.changeDb(game.numbersPosition);
+                this.view.startSavedGameTimer(game.timer);
+                this.view.setMoves(game.moves);
+            });
     }
 }
 

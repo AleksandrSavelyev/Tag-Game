@@ -268,8 +268,9 @@ class View {
     createSavedElement = props => {
         const li = document.createElement('li');
 
-        props.className && (savedGame.className = props.className);
-        props.id && (savedGame.id = props.id);
+        props.className && (li.className = props.className);
+        props.id && (li.innerText = props.id);
+        props.id && (li.id = props.id);
 
         return li;
     }
