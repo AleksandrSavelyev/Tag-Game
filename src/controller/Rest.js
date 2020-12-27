@@ -44,20 +44,6 @@ export function getGame(id){
     }
 }
 
-// export async function getGame(id){
-//     const resp = await fetch('http://localhost:3000/getGame/id', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(id)
-//     });
-
-//     const data = await resp.json();
-
-//     return data;
-// }
-
 export function getAllGames() {
     try {
         return new Promise((resolve, reject) => {
