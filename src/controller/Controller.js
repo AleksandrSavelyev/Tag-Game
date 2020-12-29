@@ -66,7 +66,7 @@ class Controller {
         if(moves!= 0){
             const numbPosition = this.model.getCurrentPositionOfNumbers();
             this.incrementId();
-            const gameInfo  = { id: this.newGameId, numbersPosition: numbPosition, moves: moves, timer: timer };
+            const gameInfo = { id: this.newGameId, numbersPosition: numbPosition, moves: moves, timer: timer };
             api.addNewGame(gameInfo).then(this.getInfoAboutAllGames());
         }
     }
@@ -74,15 +74,15 @@ class Controller {
     getInfoAboutAllGames = () => {
         api.getAllGames()
             .then(count => {
-                console.log('count', count);
-                this.view.createSavedList(count, { className: 'foot-list', id: 'foot-list' });
-                this.view.activSavedList(this.getInfoAboutGame.bind(this));
+                if(count.count !== 0){
+                    this.view.createSavedList(count.count, { className: 'foot-list', id: 'foot-list' });
+                    this.view.activSavedList(this.getInfoAboutGame.bind(this));
+                }
             });
-
     }
 
     getInfoAboutGame = id => {
-        api.getGame(id)
+        api.getGame({ id })
             .then(game => {
                 console.log('game', game);
                 this.model.changeDb(game.numbersPosition);

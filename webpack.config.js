@@ -10,7 +10,7 @@ module.exports = {
     },
     devServer: {
         port: 3000,
-        contentBase: path.resolve(__dirname, "./build"),
+        contentBase: path.resolve(__dirname, "../Tag-Game-BackEnd/public"),
         hot: true,
         open: true,
         watchContentBase: true,

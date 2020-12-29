@@ -252,17 +252,20 @@ class View {
     createSavedList = (gamesCount, props) => {
         this.footContainer.innerHTML = '';
 
-        const savedList = document.createElement('ul');
+        this.savedList = document.createElement('ul');
 
-        props.className && (savedList.className = props.className);
-        props.id && (savedList.id = props.id);
-        
+        props.className && (this.savedList.className = props.className);
+        props.id && (this.savedList.id = props.id);
+
+        this.footContainer.append(this.savedList);
+
+        this.savedList.style.backgroundColor = 'white';
+        this.savedList.style.width = '100px';
+
         for(let i = 1; i <= gamesCount; i++){
             const li = this.createSavedElement({ id: i, className: 'list__game-numb'});
             this.savedList.append(li);
         }
-
-        this.footContainer.append(this.savedList);
     }
 
     createSavedElement = props => {
